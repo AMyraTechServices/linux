@@ -17,5 +17,7 @@ echo 'checking with buffer cache'
 echo '=========================='
 dd if=diskbench of=/dev/null bs=1M count=1024
 
-echo 'RUN THIS AT DIFFERENT TIMES TO CALCULATE AVG AND DELETE THE FILE'
+echo 'RUN THIS AT DIFFERENT TIMES TO CALCULATE THE AVG'
+
+sudo rm -rf /home/bench/
 
