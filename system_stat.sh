@@ -13,10 +13,10 @@ echo '====================================='
 #then
 #   echo "package is already installed"
 #else
-   sudo apt-get install nethogs
-   sudo apt-get install tcptrack
-   sudo nethogs
-   sudo tcptrack
+#   sudo apt-get install nethogs
+#   sudo apt-get install tcptrack
+#   sudo nethogs
+#  sudo tcptrack
 #fi
 
 echo 'GETTING IOPS FOR YOUR SYSTEM'
