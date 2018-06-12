@@ -1,5 +1,6 @@
 #!/bin/bash
 #written by Gren Pinto 22/2/2014
+if [ "$USER" = "root" ]; then
 touch /tmp/sys_info.out
 echo '====START===='>>/tmp/sys_info.out
 date >> /tmp/sys_info.out
@@ -30,3 +31,6 @@ lshw -short -class storage>> /tmp/sys_info.out
 lshw -short -class volume>> /tmp/sys_info.out
 echo 'output written to /tmp/sys_infp.out'
 echo '====END===='>> /tmp/sys_info.out
+else
+echo 'WARNING:!!!execute as root!!!'
+fi
