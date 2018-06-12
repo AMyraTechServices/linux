@@ -1,23 +1,23 @@
 #!/bin/bash
-cd
-sudo mkdir /home/bench/
-cd /home/bench/
-
-echo 'CHECKING WRITE PERFORMANCE: You’ll want this to be above 400 MB/s'
+if [ "$USER" = "root" ]; then
+mkdir /tmp/bench/
+touch /tmp/bench/diskbench
+echo 'CHECKING WRITE PERFORMANCE: You’ll want this to be above 40 MB/s'
 echo '================================================================='
-sudo dd if=/dev/zero of=diskbench bs=1M count=1024 conv=fdatasync
-
+dd if=/dev/zero of=/tmp/bench/diskbench bs=1M count=1024 conv=fdatasync
 
 echo 'CHECKING READ PERFORMANCE:deleting buffer cache in order to measure ‘read’ speed'
 echo '================================================================================'
-echo 3 | sudo tee /proc/sys/vm/drop_caches
-dd if=diskbench of=/dev/null bs=1M count=1024
+echo 3 > /proc/sys/vm/drop_caches
+
+dd if=/tmp/bench/diskbench of=/dev/null bs=1M count=1024
 
 echo 'checking with buffer cache'
 echo '=========================='
-dd if=diskbench of=/dev/null bs=1M count=1024
+dd if=/tmp/bench/diskbench of=/dev/null bs=1M count=1024
 
-echo 'RUN THIS AT DIFFERENT TIMES TO CALCULATE THE AVG'
+sudo rm -rf /tmp/bench/
 
-sudo rm -rf /home/bench/
-
+else
+echo 'WARNING:!!!PLEASE EXECUTE AS ROOT USER'
+fi
