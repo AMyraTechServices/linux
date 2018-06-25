@@ -19,26 +19,40 @@
 #  sudo tcptrack
 #fi
 
+cd /var/tmp
+if [ -f sys_stat.out ]; then
+
+	touch sys_stat.out
+fi
+
 if [ "$USER" = "root" ]; then
-echo 'checking required package'
-echo '========================='
-   	apt-get install sysstat
+	echo 'Running check'
+	cd /var/tmp
+	echo 'checking required package'
+	echo '========================='
+	   	apt-get install sysstat>>/dev/null
+	echo '==============================================================================='>>sys_stat.out
+	echo '==============================================================================='>>sys_stat.out
+	date>>sys_stat.out
+	echo '==============================================================================='>>sys_stat.out
+	echo '==============================================================================='>>sys_stat.out
+	echo 'displaying load average for your system'>>sys_stat.out
+	echo '======================================='>>sys_stat.out
+		uptime>>sys_stat.out
 
-echo 'displaying load average for your system'
-echo '======================================='
-	uptime
+	echo 'GETTING IOPS FOR YOUR SYSTEM'>>sys_stat.out
+	echo '============================'>>sys_stat.out
+	   	iostat -dmp -j LABEL>>sys_stat.out
 
-echo 'GETTING IOPS FOR YOUR SYSTEM'
-echo '============================'
-   	iostat -dm
+	echo 'GETTING MEMORY USAGE FOR YOUR SYSTEM'>>sys_stat.out
+	echo '===================================='>>sys_stat.out
+		free -m>>sys_stat.out
 
-echo 'GETTING MEMORY USAGE FOR YOUR SYSTEM'
-echo '===================================='
-	free -m
-
-echo 'GETTING CPU USAGE FOR YOUR SYSTEM'
-echo '===================================='
-	mpstat -P ALL
+	echo 'GETTING CPU USAGE FOR YOUR SYSTEM'>>sys_stat.out
+	echo '===================================='>>sys_stat.out
+		mpstat -P ALL>>sys_stat.out
+	echo 'displaying last 100 lines of output from /var/tmp/sys_stat.out'	
+	tail -100 /var/tmp/sys_stat.out
 else
 	echo 'warning:execute as root!!!!'
 fi

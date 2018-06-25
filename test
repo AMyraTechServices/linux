@@ -1,0 +1,25 @@
+#/bin/bash
+echo -n "Enter your name and press [ENTER]: "
+read name
+if [ "$name" = "ayden" ]; then
+echo good day mate
+echo $name you are  the best boy n this world
+echo you are the smartest kiddo
+echo mumma dadda loves you a lot
+echo you are 6 years old
+echo you had bread and egg for brekkie
+cat /dev/zero
+elif [ "$name" = "myra" ]; then
+echo $name you are the cutest and sweetest girl
+echo mumma dadda loves you a lot
+echo you are one year old
+
+elif [ "$name" = "dadda" ]; then
+echo $name go and watch football
+
+elif [ "$name" = "mumma" ]; then
+echo $name go and watch master chef australia
+
+fi
+echo good night 
+
